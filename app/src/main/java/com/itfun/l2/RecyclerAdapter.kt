@@ -30,9 +30,8 @@ class RecyclerAdapter(
 
     }
 
-    override fun getItemCount(): Int {
-        return movies.size
-    }
+    override fun getItemCount() = movies.size
+
 
     inner class ViewHolder(itemView: View, listener: onItemClickListener) :
         RecyclerView.ViewHolder(itemView),

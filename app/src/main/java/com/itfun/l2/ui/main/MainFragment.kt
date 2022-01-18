@@ -6,14 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.itfun.l2.Movie
 import com.itfun.l2.R
 import com.itfun.l2.RecyclerAdapter
-import com.itfun.l2.fragment_nav.FavouriteFragment
+import com.itfun.l2.showSnackBar
 import java.util.ArrayList
 
 class MainFragment : Fragment(), RecyclerAdapter.onItemClickListener {
@@ -55,7 +53,6 @@ class MainFragment : Fragment(), RecyclerAdapter.onItemClickListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
 
     }
 
@@ -66,6 +63,8 @@ class MainFragment : Fragment(), RecyclerAdapter.onItemClickListener {
             movies[position].ratingMovie
         )
 
+
+        view?.showSnackBar(movies[position].titleMovie, "Close", View.OnClickListener {})
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragment)
         transaction.commit()
